@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: phpdeployment
+  labels:
+    type: app
+
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+       type: app
+  template:
+    metadata:
+      name: php-pod
+      labels:
+        type: app
+    spec:
+      containers:
+        - name: php-mongodb
+          image: docker.io/koteswararao798988/php-mongodb-crud:latest
+          ports:
+            - containerPort: 80
+              hostPort: 80
+
+
